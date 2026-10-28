@@ -1,0 +1,140 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand-charcoal: #1C2329;
+  --brand-charcoal-medium: #263038;
+  --brand-steel: #4A5866;
+  --brand-zinc: #8B99A6;
+  --brand-primary: #D92525;
+  --brand-primary-hover: #B91C1C;
+  --brand-red: #D92525;
+  --brand-orange: #D92525;
+  --brand-orange-hover: #B91C1C;
+  --brand-blue: #1F597A;
+  --brand-navy: #102C42;
+  --brand-green: #1B7354;
+  --brand-yellow: #FFB703;
+  --brand-bg: #EEF1F4;
+  --brand-border: #BEC8D1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Gotham, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  color: #1C2329;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ======================================================== */
+/* INDUSTRIAL TEXTURES & CORRUGATED METAL STYLING           */
+/* ======================================================== */
+
+/* Subtle corrugated metal rib background */
+.bg-corrugated {
+  background-color: #1C2329;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.02) 0px,
+    rgba(255, 255, 255, 0.02) 6px,
+    rgba(0, 0, 0, 0.18) 6px,
+    rgba(0, 0, 0, 0.18) 12px
+  );
+}
+
+.bg-corrugated-light {
+  background-color: #EEF1F4;
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.5) 0px,
+    rgba(255, 255, 255, 0.5) 8px,
+    rgba(0, 0, 0, 0.03) 8px,
+    rgba(0, 0, 0, 0.03) 16px
+  );
+}
+
+/* Technical blueprint micro grid */
+.bg-blueprint-grid {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(28, 35, 41, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(28, 35, 41, 0.05) 1px, transparent 1px);
+}
+
+.bg-blueprint-grid-dark {
+  background-size: 24px 24px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+}
+
+/* Industrial Caution stripes in Forge Red */
+.hazard-stripes {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #D92525,
+    #D92525 8px,
+    #1C2329 8px,
+    #1C2329 16px
+  );
+}
+
+/* Chamfered industrial metal cuts */
+.clip-chamfer-tl {
+  clip-path: polygon(14px 0, 100% 0, 100% 100%, 0 100%, 0 14px);
+}
+
+.clip-chamfer-br {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%);
+}
+
+.clip-chamfer-both {
+  clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+}
+
+/* Steel bolt / rivet decorative styling */
+.rivet-head {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #A0AEC0;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.8), 1px 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.rivet-head-dark {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4A5568;
+  box-shadow: inset 1px 1px 1px rgba(255, 255, 255, 0.2), 1px 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+/* Corner wedges (Iconic IronCrest architectural accents in Forge Red) */
+.corner-wedge-left {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.corner-wedge-right {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #1C2329;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #4A5866;
+  border-radius: 0px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #D92525;
+}
