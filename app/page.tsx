@@ -4,7 +4,6 @@ import React, { useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroCarousel from "@/components/HeroCarousel";
 import ShopProducts from "@/components/ShopProducts";
-import VisualizerBanner from "@/components/VisualizerBanner";
 import ProjectGallery from "@/components/ProjectGallery";
 import ValueProps from "@/components/ValueProps";
 import ToolsResources from "@/components/ToolsResources";
@@ -31,9 +30,8 @@ export default function Home() {
         {/* 2. Hero Carousel (4 Slides with Autoplay & Signature Wedges) */}
         <HeroCarousel />
 
-        {/* 3. Shop Products (5-Card Grid) & Building Visualizer Banner */}
+        {/* 3. Shop Products (5-Card Grid) */}
         <ShopProducts />
-        <VisualizerBanner />
 
         {/* 4. Interactive Project Gallery (Filter tabs & Carousel) */}
         <ProjectGallery />
@@ -60,7 +58,7 @@ export default function Home() {
       <StoreLocatorModal
         isOpen={isStoreLocatorOpen}
         onClose={() => setIsStoreLocatorOpen(false)}
-        selectedStore="Dallas / Fort Worth (#104)"
+        selectedStore="Houston HQ (708 Main St.)"
         onSelectStore={(storeName) => {
           // Store selected
         }}

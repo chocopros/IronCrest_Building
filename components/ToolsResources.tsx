@@ -13,7 +13,7 @@ export default function ToolsResources() {
       cta: "Start A Quote",
       href: "#get-a-quote",
       icon: Calculator,
-      badge: "QUICK PRICING // CAD TAKEOFF",
+      badge: "QUICK PRICING // ESTIMATE",
     },
     {
       id: "brochures",
@@ -25,13 +25,13 @@ export default function ToolsResources() {
       badge: "TECHNICAL CSI SPECS",
     },
     {
-      id: "visualizer",
-      title: "Building Visualizer",
-      desc: "Experiment with 20+ panel colors, trims, wainscots, and porch additions in interactive real-time 3D before you build.",
-      cta: "Design Now",
-      href: "#visualizer",
-      icon: MonitorPlay,
-      badge: "3D COLOR & MODEL RENDER",
+      id: "color-chart",
+      title: "Color Chart & Panel Guide",
+      desc: "Explore 20+ standard and premium paint finishes, heavy-gauge steel profiles, Galvalume® coatings, and color durability warranties.",
+      cta: "View Color Guide",
+      href: "#color-chart",
+      icon: Layers,
+      badge: "COATINGS & FINISHES",
     },
   ];
 
@@ -42,7 +42,7 @@ export default function ToolsResources() {
           <div className="inline-flex items-center gap-2 mb-2">
             <span className="w-2.5 h-2.5 bg-brand-orange" />
             <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-brand-steel">
-              DIGITAL ENGINEERING SUITE
+              BUILDING PLANNING & SPECS
             </span>
           </div>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase text-[#1C2329] tracking-tight font-serif">
@@ -50,7 +50,7 @@ export default function ToolsResources() {
           </h2>
           <div className="h-1 w-20 bg-brand-orange mx-auto mt-2 mb-3" />
           <p className="text-xs sm:text-sm text-gray-700">
-            Interactive design software, architectural catalogs, and estimators built to streamline your metal building project from start to finish.
+            Architectural catalogs, technical specifications, and estimators built to streamline your metal building project from start to finish.
           </p>
         </div>
 

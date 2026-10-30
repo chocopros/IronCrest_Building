@@ -1,86 +1,52 @@
 "use client";
 
 import React, { useState } from "react";
-import { X, Search, MapPin, Phone, Clock, Check } from "lucide-react";
+import { X, Search, MapPin, Phone, Clock, Check, User } from "lucide-react";
+
+interface ContactPerson {
+  name: string;
+  degree: string;
+  phone: string;
+}
 
 interface Store {
   id: string;
   name: string;
   address: string;
+  floor: string;
   city: string;
   state: string;
   zip: string;
   phone: string;
+  contacts: ContactPerson[];
   hours: string;
   isFactory: boolean;
 }
 
 const STORES: Store[] = [
   {
-    id: "104",
-    name: "IronCrest Dallas North (#104)",
-    address: "1420 Regal Row",
-    city: "Dallas",
-    state: "TX",
-    zip: "75247",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:00 AM - 5:00 PM, Sat: 8:00 AM - 12:00 PM",
-    isFactory: true,
-  },
-  {
     id: "108",
-    name: "IronCrest Houston Metro (#108)",
-    address: "8820 Gulf Freeway",
+    name: "IronCrest Houston Corporate Office",
+    address: "708 Main St.",
+    floor: "10th Floor",
     city: "Houston",
     state: "TX",
-    zip: "77017",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:00 AM - 5:00 PM, Sat: 8:00 AM - 12:00 PM",
+    zip: "77002",
+    phone: "(832) 781-0906",
+    contacts: [
+      {
+        name: "Jose Diego Monroy",
+        degree: "B.S.C.E.",
+        phone: "(832) 781-0906",
+      },
+      {
+        name: "Jesus Arechider",
+        degree: "B.S.E.E.",
+        phone: "(832) 781-0906",
+      },
+    ],
+    hours: "Mon - Fri: 7:00 AM - 5:00 PM",
     isFactory: true,
-  },
-  {
-    id: "102",
-    name: "IronCrest San Antonio West (#102)",
-    address: "4501 NW Loop 410",
-    city: "San Antonio",
-    state: "TX",
-    zip: "78229",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:00 AM - 5:00 PM, Sat: 8:00 AM - 12:00 PM",
-    isFactory: false,
-  },
-  {
-    id: "101",
-    name: "IronCrest Amarillo Regional (#101)",
-    address: "3200 I-40 East",
-    city: "Amarillo",
-    state: "TX",
-    zip: "79103",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:30 AM - 5:00 PM, Sat: Closed",
-    isFactory: true,
-  },
-  {
-    id: "115",
-    name: "IronCrest Phoenix Mountain West (#115)",
-    address: "2450 S 19th Ave",
-    city: "Phoenix",
-    state: "AZ",
-    zip: "85009",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:00 AM - 4:30 PM",
-    isFactory: false,
-  },
-  {
-    id: "120",
-    name: "IronCrest Baton Rouge / Gulf (#120)",
-    address: "9400 Airline Hwy",
-    city: "Baton Rouge",
-    state: "LA",
-    zip: "70815",
-    phone: "877-247-6627",
-    hours: "Mon - Fri: 7:30 AM - 5:00 PM",
-    isFactory: false,
   },
 ];
 
@@ -106,7 +72,9 @@ export default function StoreLocatorModal({
       s.name.toLowerCase().includes(query.toLowerCase()) ||
       s.city.toLowerCase().includes(query.toLowerCase()) ||
       s.state.toLowerCase().includes(query.toLowerCase()) ||
-      s.zip.includes(query)
+      s.address.toLowerCase().includes(query.toLowerCase()) ||
+      s.zip.includes(query) ||
+      s.contacts.some((c) => c.name.toLowerCase().includes(query.toLowerCase()))
   );
 
   return (
@@ -117,7 +85,7 @@ export default function StoreLocatorModal({
           <div className="flex items-center gap-2">
             <MapPin className="w-5 h-5 text-brand-orange" />
             <h3 className="text-lg font-bold tracking-wider uppercase">
-              Find an IronCrest Store
+              Office Location & Direct Contacts
             </h3>
           </div>
           <button
@@ -137,12 +105,12 @@ export default function StoreLocatorModal({
               type="text"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              placeholder="Search by City, State or ZIP Code..."
+              placeholder="Search by name, address or Houston ZIP..."
               className="w-full pl-10 pr-4 py-2.5 bg-white border border-gray-300 text-sm focus:outline-none focus:border-brand-blue text-brand-charcoal"
             />
           </div>
           <p className="text-xs text-brand-muted mt-2">
-            Showing nationwide manufacturing plants, retail design centers, and distributor warehouses.
+            Direct engineering desk and primary headquarters in Houston, Texas.
           </p>
         </div>
 
@@ -150,40 +118,81 @@ export default function StoreLocatorModal({
         <div className="p-5 overflow-y-auto space-y-4 flex-1 custom-scrollbar">
           {filteredStores.length === 0 ? (
             <div className="text-center py-8 text-brand-muted">
-              No IronCrest locations found matching your search. Please try another city or ZIP code.
+              No matching locations or contacts found. Our office is located at 708 Main St., 10th Floor, Houston, TX 77002.
             </div>
           ) : (
             filteredStores.map((store) => {
-              const isSelected = selectedStore.includes(store.id) || selectedStore.includes(store.city);
+              const isSelected = selectedStore.includes(store.id) || selectedStore.includes(store.city) || selectedStore.includes("Houston");
               return (
                 <div
                   key={store.id}
-                  className={`p-4 border transition-all ${
+                  className={`p-5 border transition-all ${
                     isSelected
                       ? "border-brand-green bg-green-50/40 shadow-sm"
                       : "border-gray-200 hover:border-gray-400 bg-white"
                   }`}
                 >
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-2">
-                        <h4 className="font-bold text-base text-brand-charcoal">
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+                    <div className="space-y-3 flex-1">
+                      {/* Name & Badge */}
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h4 className="font-bold text-lg text-brand-charcoal font-serif">
                           {store.name}
                         </h4>
-                        {store.isFactory && (
-                          <span className="text-[10px] font-bold uppercase tracking-wider bg-brand-charcoal text-white px-2 py-0.5">
-                            Factory & Roll-Forming
-                          </span>
-                        )}
-                      </div>
-                      <p className="text-sm text-gray-600">
-                        {store.address}, {store.city}, {store.state} {store.zip}
-                      </p>
-                      <div className="flex items-center gap-4 text-xs text-brand-muted pt-1">
-                        <span className="flex items-center gap-1">
-                          <Phone className="w-3.5 h-3.5 text-brand-blue" />
-                          {store.phone}
+                        <span className="text-[10px] font-bold uppercase tracking-wider bg-brand-charcoal text-white px-2 py-0.5">
+                          Headquarters
                         </span>
+                      </div>
+
+                      {/* Office Address */}
+                      <div className="text-sm text-gray-700 bg-white p-3 border border-gray-200 rounded-sm">
+                        <div className="flex items-start gap-2">
+                          <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-bold text-brand-charcoal">{store.address}</p>
+                            <p>{store.floor}</p>
+                            <p>{store.city}, {store.state} {store.zip}</p>
+                            <p className="text-xs text-brand-muted font-semibold">Houston, Texas</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Designated Contacts */}
+                      <div className="bg-gray-50 border border-gray-200 p-3 space-y-2">
+                        <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-brand-steel block">
+                          Direct Engineering Contacts:
+                        </span>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                          {store.contacts.map((contact, idx) => (
+                            <div key={idx} className="bg-white p-2.5 border border-gray-200 flex flex-col">
+                              <div className="flex items-center gap-1.5 font-bold text-xs text-brand-charcoal">
+                                <User className="w-3.5 h-3.5 text-brand-orange" />
+                                <span>{contact.name}</span>
+                              </div>
+                              <span className="text-[11px] font-mono font-bold text-brand-blue ml-5">
+                                {contact.degree}
+                              </span>
+                              <a
+                                href={`tel:${contact.phone.replace(/\D/g, "")}`}
+                                className="text-xs font-mono font-bold text-brand-orange hover:underline ml-5 mt-1 flex items-center gap-1"
+                              >
+                                <Phone className="w-3 h-3" />
+                                {contact.phone}
+                              </a>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Phone & Hours */}
+                      <div className="flex flex-wrap items-center gap-4 text-xs text-brand-muted pt-1">
+                        <a
+                          href={`tel:${store.phone.replace(/\D/g, "")}`}
+                          className="flex items-center gap-1 font-bold text-brand-charcoal hover:text-brand-orange transition-colors"
+                        >
+                          <Phone className="w-3.5 h-3.5 text-brand-orange" />
+                          <span>{store.phone}</span>
+                        </a>
                         <span className="flex items-center gap-1">
                           <Clock className="w-3.5 h-3.5 text-brand-blue" />
                           {store.hours}
@@ -191,11 +200,11 @@ export default function StoreLocatorModal({
                       </div>
                     </div>
 
-                    <div className="sm:self-center shrink-0">
+                    <div className="sm:self-start shrink-0">
                       {isSelected ? (
                         <div className="flex items-center gap-1.5 text-brand-green font-bold text-xs uppercase px-3 py-2 bg-green-100/70 border border-brand-green">
                           <Check className="w-4 h-4" />
-                          My Selected Store
+                          Primary Office
                         </div>
                       ) : (
                         <button
@@ -205,7 +214,7 @@ export default function StoreLocatorModal({
                           }}
                           className="px-4 py-2 text-xs font-bold uppercase tracking-wider bg-brand-charcoal hover:bg-brand-orange text-white transition-colors cursor-pointer"
                         >
-                          Select Store
+                          Select Location
                         </button>
                       )}
                     </div>

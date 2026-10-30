@@ -24,8 +24,7 @@ const SLIDES: HeroSlide[] = [
       "Now backed by the strength of IronCrest Building Systems. Nationwide supply, factory-direct roll-forming, and dedicated local expertise.",
     ctaText: "VIEW ALL LOCATIONS",
     ctaLink: "#store-locator",
-    image:
-      "https://centria.widen.net/content/npapwyyznr/jpeg/mue26_new mueller site banner 1_0826.jpg",
+    image: "/carousel/slide1.jpg",
     alt: "IronCrest retail locations and manufacturing distribution network",
     specCode: "NETWORK // 40+ REGIONAL PLANTS & HUBS",
     gradeBadge: "DIRECT ROLL-FORMING",
@@ -37,8 +36,7 @@ const SLIDES: HeroSlide[] = [
       "Seasonal savings start now. Take advantage of manufacturer-direct pricing on steel workshops, storage buildings, and residential kits.",
     ctaText: "VIEW SPECIAL OFFERS",
     ctaLink: "#special-offers",
-    image:
-      "https://centria.widen.net/content/lcluwh6ckr/jpeg/mue26_fall sale web banners_802x500_ms_0826 (1).jpg",
+    image: "/carousel/slide2.jpg",
     alt: "Seasonal metal building savings and promotional pricing",
     specCode: "PROMO // BOLT-TOGETHER FRAMING PACKAGES",
     gradeBadge: "FACTORY DIRECT SAVINGS",
@@ -49,29 +47,15 @@ const SLIDES: HeroSlide[] = [
     subtitle: "Less Concrete. Less labor. More control over your build.",
     ctaText: "PLAN YOUR POLE BARN",
     ctaLink: "#pole-barn",
-    image:
-      "https://centria.widen.net/content/ustlsjwqxu/jpeg/mue26_new mueller site banner 2_0826.jpg",
+    image: "/carousel/slide3.jpg",
     alt: "Black modern pole barn post frame building with garage doors",
     specCode: "POST-FRAME // SOLID TRUSS ENGINEERING",
     gradeBadge: "26-GA COMMERCIAL STEEL",
   },
-  {
-    id: 4,
-    title: "SEE IT BEFORE YOU BUILD IT",
-    subtitle:
-      "Explore sizes, colors, and layouts in our free 3D Visualizer. Submit your design for an instant engineer-backed quote.",
-    ctaText: "DESIGN YOUR BUILDING",
-    ctaLink: "#visualizer",
-    image:
-      "https://centria.widen.net/content/zlsdnb6glo/jpeg/mue26_new mueller site banner 4_ms_0826.jpg",
-    alt: "3D building visualizer interactive design preview",
-    specCode: "CAD 3D // REAL-TIME STRUCTURAL MODELING",
-    gradeBadge: "PRECISION TAKEOFF",
-  },
 ];
 
 export default function HeroCarousel() {
-  const [currentSlide, setCurrentSlide] = useState(2); // Slide 3 (Build It Right) matching Screenshot
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
   const nextSlide = useCallback(() => {

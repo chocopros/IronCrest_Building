@@ -53,12 +53,12 @@ export default function Footer({
                 </h3>
                 <div className="h-0.5 w-12 bg-brand-orange mt-2 mb-3" />
                 <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                  Start your custom steel building or roofing estimate today. Speak directly with a structural engineer or submit your project details online for immediate pricing.
+                  Start your custom steel building or roofing estimate today. Speak directly with our structural & electrical engineers Jose Diego Monroy (B.S.C.E.) or Jesus Arechider (B.S.E.E.) for immediate pricing.
                 </p>
                 <div className="mt-4 flex items-center gap-2 text-brand-orange font-bold text-sm bg-black/40 p-2.5 border-l-2 border-brand-orange inline-flex">
                   <Phone className="w-4 h-4" />
-                  <a href="tel:877-247-6627" className="hover:underline font-mono">
-                    877-2-IRONCREST (877-247-6627)
+                  <a href="tel:8327810906" className="hover:underline font-mono">
+                    (832) 781-0906
                   </a>
                 </div>
               </div>
@@ -75,7 +75,7 @@ export default function Footer({
               </div>
             </div>
 
-            {/* Block 2: FIND A STORE NEAR YOU */}
+            {/* Block 2: OFFICE LOCATION */}
             <div className="relative p-8 border-2 border-gray-700 bg-[#171D22] flex flex-col justify-between shadow-xl">
               {/* Corner Rivet Details */}
               <span className="absolute top-2.5 left-2.5 rivet-head-dark z-10" />
@@ -85,19 +85,26 @@ export default function Footer({
                 <div className="flex items-center gap-2 mb-2">
                   <span className="w-2 h-2 bg-brand-blue" />
                   <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-brand-zinc">
-                    MANUFACTURING PLANTS & ROLL-FORMING LINES
+                    HEADQUARTERS // HOUSTON, TEXAS
                   </span>
                 </div>
                 <h3 className="text-2xl font-black uppercase tracking-tight font-serif text-white mt-1">
-                  Find A Store Near You
+                  Office Location
                 </h3>
                 <div className="h-0.5 w-12 bg-brand-blue mt-2 mb-3" />
                 <p className="text-xs sm:text-sm text-gray-300 leading-relaxed">
-                  Browse regional roll-forming manufacturing hubs, retail design centers, and authorized distributor yards with heavy coil stock across the nation.
+                  Visit our corporate engineering office or schedule a project review with our team in downtown Houston.
                 </p>
-                <div className="mt-4 flex items-center gap-2 text-gray-300 text-xs bg-black/40 p-2.5 border-l-2 border-brand-blue">
-                  <MapPin className="w-4 h-4 text-brand-orange" />
-                  <span>Serving Texas, the Southwest, Rocky Mountains, and Nationwide shipping corridors.</span>
+                <div className="mt-4 flex flex-col gap-1.5 text-gray-300 text-xs bg-black/40 p-3 border-l-2 border-brand-blue font-mono">
+                  <div className="flex items-start gap-2">
+                    <MapPin className="w-4 h-4 text-brand-orange shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-bold text-white block">708 Main St.</span>
+                      <span className="text-gray-300 block">10th Floor</span>
+                      <span className="text-gray-300 block">Houston, TX 77002</span>
+                      <span className="text-brand-orange font-bold text-[11px] block mt-0.5">Houston, Texas</span>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -107,7 +114,7 @@ export default function Footer({
                   onClick={onOpenStoreLocator}
                   className="inline-flex items-center gap-2.5 bg-white hover:bg-gray-100 text-[#1C2329] text-xs font-black uppercase tracking-wider px-7 py-3.5 transition-colors shadow-lg border-b-2 border-gray-400 cursor-pointer"
                 >
-                  <span>Launch Store Locator</span>
+                  <span>View Office & Contacts</span>
                   <span className="text-brand-orange">▶</span>
                 </button>
               </div>
@@ -167,18 +174,18 @@ export default function Footer({
             </ul>
           </div>
 
-          {/* Col 2: Design Tools */}
+          {/* Col 2: Planning & Quotes */}
           <div>
             <h4 className="text-xs font-black uppercase tracking-widest text-brand-orange mb-4 border-b border-gray-700 pb-2">
-              Design Tools
+              Planning & Quotes
             </h4>
             <ul className="space-y-2 text-xs">
               {[
-                { label: "Building 3D Visualizer", href: "#visualizer" },
-                { label: "Roofing 3D Design Tool", href: "#roofing-tool" },
                 { label: "Building Quote Assistant", href: "#quote-assistant" },
-                { label: "Load Calculator & Engineering", href: "#load-calc" },
-                { label: "Color Visualizer", href: "#color-chart" },
+                { label: "Color Charts & Finishes", href: "#color-chart" },
+                { label: "Standard Building Sizes", href: "#building-kits" },
+                { label: "Structural Load Codes", href: "#load-calc" },
+                { label: "Component Catalog", href: "#products" },
               ].map((link, idx) => (
                 <li key={idx}>
                   <Link href={link.href} className="text-gray-400 hover:text-white transition-colors block py-0.5">
@@ -288,16 +295,38 @@ export default function Footer({
               </form>
             )}
 
-            <div className="mt-6 pt-4 border-t border-gray-800">
-              <span className="text-[10px] font-mono uppercase text-gray-400 block mb-1">
-                CORPORATE ORDER DESK:
-              </span>
-              <a href="tel:877-247-6627" className="text-base font-black text-brand-orange hover:underline block font-mono">
-                877-2-IRONCREST
-              </a>
-              <span className="text-[11px] text-gray-500 block font-mono">
-                (877-247-6627)
-              </span>
+            <div id="contact" className="mt-6 pt-4 border-t border-gray-800 space-y-3">
+              <div>
+                <span className="text-[10px] font-mono uppercase text-gray-400 block mb-1.5">
+                  DIRECT CONTACTS:
+                </span>
+                <div className="space-y-2 text-xs font-mono">
+                  <div className="flex flex-col">
+                    <span className="font-bold text-white">Jose Diego Monroy B.S.C.E.</span>
+                    <a href="tel:8327810906" className="text-brand-orange hover:underline">
+                      (832) 781-0906
+                    </a>
+                  </div>
+                  <div className="flex flex-col pt-1.5 border-t border-gray-800">
+                    <span className="font-bold text-white">Jesus Arechider B.S.E.E.</span>
+                    <a href="tel:8327810906" className="text-brand-orange hover:underline">
+                      (832) 781-0906
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-2 border-t border-gray-800">
+                <span className="text-[10px] font-mono uppercase text-gray-400 block mb-1">
+                  UBICACIÓN DE OFICINA:
+                </span>
+                <div className="text-[11px] text-gray-300 font-mono leading-tight space-y-0.5">
+                  <p className="font-semibold text-white">708 Main St.</p>
+                  <p>10th Floor</p>
+                  <p>Houston, TX 77002</p>
+                  <p className="text-brand-orange">houston texas</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

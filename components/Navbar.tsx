@@ -54,8 +54,8 @@ export const PANELS_LIST = [
 
 export default function Navbar() {
   // Location states
-  const [deliveryZip, setDeliveryZip] = useState("75001");
-  const [nearestStore, setNearestStore] = useState("Dallas / Fort Worth (#104)");
+  const [deliveryZip, setDeliveryZip] = useState("77002");
+  const [nearestStore, setNearestStore] = useState("Houston HQ (708 Main St.)");
   const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
   const [isStoreModalOpen, setIsStoreModalOpen] = useState(false);
 
@@ -70,7 +70,7 @@ export default function Navbar() {
 
   // Mobile Drawer state
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [mobileLevel, setMobileLevel] = useState<"main" | "metal-buildings" | "products" | "design-tools" | "inspiration" | "resources" | "about-us">("main");
+  const [mobileLevel, setMobileLevel] = useState<"main" | "metal-buildings" | "products" | "inspiration" | "resources" | "about-us">("main");
   const [mobileSubCategory, setMobileSubCategory] = useState<string | null>(null);
 
   // Account dropdown state
@@ -98,7 +98,7 @@ export default function Navbar() {
     { label: "IronCore® Cold-Formed Kits", href: "#building-kits", tag: "Kit" },
     { label: "PBR Metal Roof & Wall Panel", href: "#products", tag: "Panel" },
     { label: "BattenLok® HS Standing Seam", href: "#products", tag: "Panel" },
-    { label: "Building 3D Visualizer", href: "#design-tools", tag: "Tool" },
+    { label: "Building Quote Assistant", href: "#quote-assistant", tag: "Quote" },
     { label: "CrestCoil™ Steel Jobsite Coils", href: "#products", tag: "Coil" },
   ].filter((item) =>
     item.label.toLowerCase().includes(searchQuery.toLowerCase())
@@ -133,10 +133,10 @@ export default function Navbar() {
               </span>
               <span className="text-gray-600">|</span>
               <a
-                href="tel:877-247-6627"
-                className="text-white hover:text-brand-orange transition-colors font-bold"
+                href="tel:8327810906"
+                className="text-white hover:text-brand-orange transition-colors font-bold font-mono"
               >
-                CALL 877-2-IRONCREST
+                CALL (832) 781-0906
               </a>
             </div>
           </div>
@@ -246,11 +246,11 @@ export default function Navbar() {
 
               {/* Phone Quick Link */}
               <a
-                href="tel:877-247-6627"
-                className="hidden xl:flex items-center gap-1.5 text-xs text-brand-charcoal hover:text-brand-orange font-semibold"
+                href="tel:8327810906"
+                className="hidden xl:flex items-center gap-1.5 text-xs text-brand-charcoal hover:text-brand-orange font-semibold font-mono"
               >
                 <Phone className="w-3.5 h-3.5 text-brand-orange" />
-                877-2-IRONCREST
+                (832) 781-0906
               </a>
 
               {/* Account Dropdown */}
@@ -418,25 +418,7 @@ export default function Navbar() {
                 </button>
               </li>
 
-              {/* 3. Design Tools */}
-              <li
-                className="relative"
-                onMouseEnter={() => setActiveMenu("design-tools")}
-              >
-                <button
-                  onClick={() => setActiveMenu(activeMenu === "design-tools" ? null : "design-tools")}
-                  className={`px-3 py-3.5 text-xs xl:text-sm font-medium tracking-wide flex items-center gap-1 border-b-2 transition-all cursor-pointer ${
-                    activeMenu === "design-tools"
-                      ? "border-brand-orange text-white bg-black/15"
-                      : "border-transparent text-gray-200 hover:text-white hover:border-gray-400"
-                  }`}
-                >
-                  Design Tools
-                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeMenu === "design-tools" ? "rotate-180" : ""}`} />
-                </button>
-              </li>
-
-              {/* 4. Inspiration */}
+              {/* 3. Inspiration */}
               <li
                 className="relative"
                 onMouseEnter={() => setActiveMenu("inspiration")}
@@ -574,13 +556,13 @@ export default function Navbar() {
                     </span>
                     <h5 className="font-bold text-sm mt-1">Ready to plan your build?</h5>
                     <p className="text-xs text-gray-300 mt-1">
-                      Speak with our pre-engineered steel framing specialists today.
+                      Speak directly with engineers Jose Diego Monroy (B.S.C.E.) or Jesus Arechider (B.S.E.E.).
                     </p>
                     <a
-                      href="tel:877-247-6627"
-                      className="inline-block mt-3 text-xs font-bold text-brand-orange hover:underline"
+                      href="tel:8327810906"
+                      className="inline-block mt-3 text-xs font-bold text-brand-orange hover:underline font-mono"
                     >
-                      Call 877-2-IRONCREST →
+                      Call (832) 781-0906 →
                     </a>
                   </div>
                 </div>
@@ -952,73 +934,7 @@ export default function Navbar() {
           </div>
         )}
 
-        {/* 3. Design Tools Mega Menu */}
-        {activeMenu === "design-tools" && (
-          <div
-            onMouseLeave={() => setActiveMenu(null)}
-            className="absolute top-full left-0 w-full bg-white text-brand-charcoal shadow-2xl border-b border-gray-300 z-50 animate-fadeIn"
-          >
-            <div className="max-w-site mx-auto p-8">
-              <h4 className="text-base font-bold text-brand-charcoal uppercase tracking-wider mb-6 pb-2 border-b border-gray-200">
-                Interactive Building & Roofing Design Tools
-              </h4>
-              <div className="grid grid-cols-3 gap-6">
-                <div className="p-6 border border-gray-200 hover:border-brand-orange bg-white group transition-all">
-                  <Compass className="w-8 h-8 text-brand-orange mb-3" />
-                  <h5 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange">
-                    Building 3D Visualizer
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                    Custom-configure your steel building dimensions, roof slopes, door placements, wainscot styles, and 20+ panel color combinations in real-time 3D.
-                  </p>
-                  <Link
-                    href="#visualizer"
-                    onClick={() => setActiveMenu(null)}
-                    className="inline-block mt-4 text-xs font-bold uppercase tracking-wider text-brand-blue hover:text-brand-navy underline"
-                  >
-                    Launch Building Visualizer →
-                  </Link>
-                </div>
-
-                <div className="p-6 border border-gray-200 hover:border-brand-orange bg-white group transition-all">
-                  <Wrench className="w-8 h-8 text-brand-blue mb-3" />
-                  <h5 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange">
-                    Roofing 3D Design Tool
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                    Upload a photo of your residential or commercial property to preview standing seam panels or metal shingles with realistic textures and shadows.
-                  </p>
-                  <Link
-                    href="#roofing-tool"
-                    onClick={() => setActiveMenu(null)}
-                    className="inline-block mt-4 text-xs font-bold uppercase tracking-wider text-brand-blue hover:text-brand-navy underline"
-                  >
-                    Launch Roofing Design Tool →
-                  </Link>
-                </div>
-
-                <div className="p-6 border border-gray-200 hover:border-brand-orange bg-white group transition-all">
-                  <FileText className="w-8 h-8 text-brand-green mb-3" />
-                  <h5 className="font-bold text-base text-brand-charcoal group-hover:text-brand-orange">
-                    Building Quote Assistant
-                  </h5>
-                  <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                    Guided questionnaire to specify your required snow/wind load codes, insulation requirements, accessories, and receive an instant engineer estimate.
-                  </p>
-                  <Link
-                    href="#quote-assistant"
-                    onClick={() => setActiveMenu(null)}
-                    className="inline-block mt-4 text-xs font-bold uppercase tracking-wider text-brand-blue hover:text-brand-navy underline"
-                  >
-                    Start Quote Assistant →
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* 4. Inspiration Mega Menu */}
+        {/* 3. Inspiration Mega Menu */}
         {activeMenu === "inspiration" && (
           <div
             onMouseLeave={() => setActiveMenu(null)}
@@ -1253,7 +1169,6 @@ export default function Navbar() {
                   {[
                     { id: "metal-buildings", label: "Metal Buildings" },
                     { id: "products", label: "Products" },
-                    { id: "design-tools", label: "Design Tools" },
                     { id: "inspiration", label: "Inspiration" },
                     { id: "resources", label: "Resources" },
                     { id: "about-us", label: "About Us" },
@@ -1280,11 +1195,11 @@ export default function Navbar() {
                       Find A Store
                     </button>
                     <a
-                      href="tel:877-247-6627"
-                      className="w-full py-2.5 px-3 border border-gray-300 bg-white text-xs font-bold text-brand-charcoal uppercase flex items-center justify-center gap-2"
+                      href="tel:8327810906"
+                      className="w-full py-2.5 px-3 border border-gray-300 bg-white text-xs font-bold text-brand-charcoal uppercase flex items-center justify-center gap-2 font-mono"
                     >
                       <Phone className="w-4 h-4 text-brand-orange" />
-                      877-2-IRONCREST
+                      (832) 781-0906
                     </a>
                     <Link
                       href="#quote"
@@ -1394,24 +1309,6 @@ export default function Navbar() {
                           ))}
                         </div>
                       </div>
-                    </div>
-                  )}
-
-                  {/* Sub-menu for Design Tools */}
-                  {mobileLevel === "design-tools" && (
-                    <div className="p-4 space-y-3 text-xs">
-                      <Link href="#visualizer" onClick={() => setIsMobileMenuOpen(false)} className="block p-3 border border-gray-200 bg-white">
-                        <span className="font-bold text-brand-charcoal block">Building 3D Visualizer</span>
-                        <span className="text-gray-500">Configure building size, doors, colors in 3D.</span>
-                      </Link>
-                      <Link href="#roofing-tool" onClick={() => setIsMobileMenuOpen(false)} className="block p-3 border border-gray-200 bg-white">
-                        <span className="font-bold text-brand-charcoal block">Roofing 3D Design Tool</span>
-                        <span className="text-gray-500">Preview standing seam & shingles on your home.</span>
-                      </Link>
-                      <Link href="#quote-assistant" onClick={() => setIsMobileMenuOpen(false)} className="block p-3 border border-gray-200 bg-white">
-                        <span className="font-bold text-brand-charcoal block">Building Quote Assistant</span>
-                        <span className="text-gray-500">Guided questionnaire for immediate pricing.</span>
-                      </Link>
                     </div>
                   )}
 

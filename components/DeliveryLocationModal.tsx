@@ -11,21 +11,7 @@ interface DeliveryLocationModalProps {
 }
 
 export const getStoreForZip = (zip: string): string => {
-  const clean = zip.trim();
-  if (clean.startsWith("75") || clean.startsWith("76")) {
-    return "Dallas / Fort Worth (#104)";
-  } else if (clean.startsWith("77") || clean.startsWith("73")) {
-    return "Houston Metro (#108)";
-  } else if (clean.startsWith("78")) {
-    return "San Antonio / Austin (#102)";
-  } else if (clean.startsWith("79")) {
-    return "Amarillo Store (#101)";
-  } else if (clean.startsWith("85") || clean.startsWith("86")) {
-    return "Phoenix Mountain West (#115)";
-  } else if (clean.startsWith("70") || clean.startsWith("71")) {
-    return "Baton Rouge / Gulf (#120)";
-  }
-  return "Central Regional Plant (#100)";
+  return "Houston HQ (708 Main St.)";
 };
 
 export default function DeliveryLocationModal({
@@ -54,7 +40,7 @@ export default function DeliveryLocationModal({
 
   const handleUseMyLocation = () => {
     // Simulated geolocation lookup
-    const detectedZip = "75001";
+    const detectedZip = "77002";
     setZipInput(detectedZip);
     const store = getStoreForZip(detectedZip);
     onSaveZip(detectedZip, store);
