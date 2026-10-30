@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { X, MapPin, Truck, Check } from "lucide-react";
 
 interface DeliveryLocationModalProps {
@@ -22,6 +22,13 @@ export default function DeliveryLocationModal({
 }: DeliveryLocationModalProps) {
   const [zipInput, setZipInput] = useState(currentZip);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (isOpen) {
+      setZipInput(currentZip);
+      setError("");
+    }
+  }, [isOpen, currentZip]);
 
   if (!isOpen) return null;
 

@@ -14,17 +14,23 @@ import StoreLocatorModal from "@/components/StoreLocatorModal";
 export default function Home() {
   const [isQuoteModalOpen, setIsQuoteModalOpen] = useState(false);
   const [isStoreLocatorOpen, setIsStoreLocatorOpen] = useState(false);
-  const [savedQuotes, setSavedQuotes] = useState<string[]>([]);
-  const [cartCount, setCartCount] = useState(0);
+  const [cartCount] = useState(0);
+  const [deliveryZip, setDeliveryZip] = useState("77002");
+  const [nearestStore, setNearestStore] = useState("Houston HQ (708 Main St.)");
 
-  const handleSaveQuote = (quoteName: string) => {
-    setSavedQuotes((prev) => [...prev, quoteName]);
+  const handleLocationChange = (zip: string, store: string) => {
+    setDeliveryZip(zip);
+    setNearestStore(store);
   };
 
   return (
     <div className="min-h-screen flex flex-col bg-white text-brand-charcoal">
       {/* 1. Header & Multi-level Mega Navigation */}
-      <Navbar />
+      <Navbar
+        deliveryZip={deliveryZip}
+        nearestStore={nearestStore}
+        onLocationChange={handleLocationChange}
+      />
 
       <main className="flex-1">
         {/* 2. Hero Carousel (4 Slides with Autoplay & Signature Wedges) */}
@@ -52,16 +58,13 @@ export default function Home() {
         isOpen={isQuoteModalOpen}
         onClose={() => setIsQuoteModalOpen(false)}
         cartItemCount={cartCount}
-        onSaveQuote={handleSaveQuote}
       />
 
       <StoreLocatorModal
         isOpen={isStoreLocatorOpen}
         onClose={() => setIsStoreLocatorOpen(false)}
-        selectedStore="Houston HQ (708 Main St.)"
-        onSelectStore={(storeName) => {
-          // Store selected
-        }}
+        selectedStore={nearestStore}
+        onSelectStore={(storeName, zip) => handleLocationChange(zip, storeName)}
       />
     </div>
   );

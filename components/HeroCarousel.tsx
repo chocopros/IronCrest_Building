@@ -95,7 +95,7 @@ export default function HeroCarousel() {
 
       {/* Bottom Right Signature Forge Crimson Wedge */}
       <div
-        className="absolute bottom-0 right-0 w-40 md:w-88 h-40 md:h-88 z-10 pointer-events-none hidden sm:block drop-shadow-md"
+        className="absolute bottom-0 right-0 w-40 md:w-[22rem] h-40 md:h-[22rem] z-10 pointer-events-none hidden sm:block drop-shadow-md"
         style={{
           background: "#D92525",
           clipPath: "polygon(100% 0, 100% 100%, 0 100%)",

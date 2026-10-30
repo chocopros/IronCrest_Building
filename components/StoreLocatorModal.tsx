@@ -122,7 +122,10 @@ export default function StoreLocatorModal({
             </div>
           ) : (
             filteredStores.map((store) => {
-              const isSelected = selectedStore.includes(store.id) || selectedStore.includes(store.city) || selectedStore.includes("Houston");
+              const isSelected =
+                selectedStore.includes(store.name) ||
+                selectedStore.includes(store.city) ||
+                selectedStore.includes(store.id);
               return (
                 <div
                   key={store.id}

@@ -52,10 +52,18 @@ export const PANELS_LIST = [
   "Ultra-Dek®",
 ];
 
-export default function Navbar() {
+interface NavbarProps {
+  deliveryZip: string;
+  nearestStore: string;
+  onLocationChange: (zip: string, store: string) => void;
+}
+
+export default function Navbar({
+  deliveryZip,
+  nearestStore,
+  onLocationChange,
+}: NavbarProps) {
   // Location states
-  const [deliveryZip, setDeliveryZip] = useState("77002");
-  const [nearestStore, setNearestStore] = useState("Houston HQ (708 Main St.)");
   const [isDeliveryModalOpen, setIsDeliveryModalOpen] = useState(false);
   const [isStoreModalOpen, setIsStoreModalOpen] = useState(false);
 
@@ -79,6 +87,10 @@ export default function Navbar() {
   // Cart count
   const [cartCount, setCartCount] = useState(0);
 
+  // Hide-on-scroll-down / reveal-on-scroll-up state
+  const [isNavVisible, setIsNavVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
   // Close menus on click outside
   const navRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -90,6 +102,34 @@ export default function Navbar() {
     }
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Hide on scroll down, reveal on scroll up (requestAnimationFrame throttled)
+  useEffect(() => {
+    let ticking = false;
+
+    const updateVisibility = () => {
+      const currentY = window.scrollY;
+      if (currentY < 80) {
+        setIsNavVisible(true);
+      } else if (currentY > lastScrollY.current + 6) {
+        setIsNavVisible(false);
+      } else if (currentY < lastScrollY.current - 6) {
+        setIsNavVisible(true);
+      }
+      lastScrollY.current = currentY;
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(updateVisibility);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Quick search suggestions
@@ -104,9 +144,33 @@ export default function Navbar() {
     item.label.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    const target = searchSuggestions[0]?.href ?? "#shop-products";
+    setSearchQuery("");
+    setIsSearchFocused(false);
+    const destination =
+      document.querySelector(target) ?? document.querySelector("#shop-products");
+    destination?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  // Keep the header pinned while an overlay/menu is open so fixed drawers stay viewport-bound
+  const navHidden =
+    !isNavVisible &&
+    !isMobileMenuOpen &&
+    !isAccountOpen &&
+    !activeMenu &&
+    !isDeliveryModalOpen &&
+    !isStoreModalOpen;
+
   return (
     <>
-      <header ref={navRef} className="w-full bg-white relative z-40 border-b border-gray-300">
+      <header
+        ref={navRef}
+        className={`w-full bg-white sticky top-0 z-40 border-b border-gray-300 transition-transform duration-300 ${
+          navHidden ? "-translate-y-full" : ""
+        }`}
+      >
         {/* ======================================================== */}
         {/* TOP INDUSTRIAL CREDENTIAL BAR (Heavy Steel Manufacturing)*/}
         {/* ======================================================== */}
@@ -155,7 +219,11 @@ export default function Navbar() {
             </div>
 
             {/* Global Search Input (Desktop) */}
-            <div className="hidden lg:block relative flex-1 max-w-xs xl:max-w-sm">
+            <form
+              onSubmit={handleSearch}
+              role="search"
+              className="hidden lg:block relative flex-1 max-w-xs xl:max-w-sm"
+            >
               <div className="relative flex items-center">
                 <input
                   type="text"
@@ -168,6 +236,7 @@ export default function Navbar() {
                 />
                 {searchQuery ? (
                   <button
+                    type="button"
                     onClick={() => setSearchQuery("")}
                     className="absolute right-7 p-1 text-gray-400 hover:text-gray-600"
                     aria-label="Clear search"
@@ -176,7 +245,7 @@ export default function Navbar() {
                   </button>
                 ) : null}
                 <button
-                  type="button"
+                  type="submit"
                   aria-label="Submit search"
                   className="absolute right-1.5 p-1 text-brand-charcoal hover:text-brand-orange"
                 >
@@ -207,7 +276,7 @@ export default function Navbar() {
                   )}
                 </div>
               )}
-            </div>
+            </form>
 
             {/* Desktop Action Group */}
             <div className="hidden lg:flex items-center gap-6 xl:gap-8">
@@ -1372,10 +1441,7 @@ export default function Navbar() {
         isOpen={isDeliveryModalOpen}
         onClose={() => setIsDeliveryModalOpen(false)}
         currentZip={deliveryZip}
-        onSaveZip={(newZip, newStore) => {
-          setDeliveryZip(newZip);
-          setNearestStore(newStore);
-        }}
+        onSaveZip={(newZip, newStore) => onLocationChange(newZip, newStore)}
       />
 
       {/* Store Locator Modal */}
@@ -1383,10 +1449,7 @@ export default function Navbar() {
         isOpen={isStoreModalOpen}
         onClose={() => setIsStoreModalOpen(false)}
         selectedStore={nearestStore}
-        onSelectStore={(storeName, zip) => {
-          setNearestStore(storeName);
-          setDeliveryZip(zip);
-        }}
+        onSelectStore={(storeName, zip) => onLocationChange(zip, storeName)}
       />
     </>
   );

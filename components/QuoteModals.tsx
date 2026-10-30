@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { X, FileText, CheckCircle2, AlertCircle, ShoppingCart } from "lucide-react";
 
 interface QuoteModalsProps {
@@ -20,6 +20,20 @@ export default function QuoteModals({
   const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
   const [savedQuoteId, setSavedQuoteId] = useState("");
+  const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!isOpen && closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimer.current) clearTimeout(closeTimer.current);
+    };
+  }, []);
 
   if (!isOpen) return null;
 
@@ -39,8 +53,9 @@ export default function QuoteModals({
       onSaveQuote(quoteName.trim());
     }
 
-    setTimeout(() => {
-      // Auto close after showing success for 2 seconds
+    if (closeTimer.current) clearTimeout(closeTimer.current);
+    closeTimer.current = setTimeout(() => {
+      closeTimer.current = null;
       setIsSuccess(false);
       setQuoteName("");
       onClose();
@@ -48,6 +63,10 @@ export default function QuoteModals({
   };
 
   const handleClose = () => {
+    if (closeTimer.current) {
+      clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
     setError("");
     setIsSuccess(false);
     onClose();

@@ -122,7 +122,7 @@ export default function ShopProducts() {
 
                 {/* Hover Overlay with Text */}
                 <div
-                  className={`absolute inset-0 bg-[#1C2329]/90 p-8 flex flex-col justify-center items-center transition-opacity duration-300 z-15 ${
+                  className={`absolute inset-0 bg-[#1C2329]/90 p-8 flex flex-col justify-center items-center transition-opacity duration-300 z-20 ${
                     hoveredCard === item.id ? "opacity-100" : "opacity-0 pointer-events-none"
                   }`}
                 >
@@ -185,7 +185,7 @@ export default function ShopProducts() {
 
                 {/* Hover Overlay with Text */}
                 <div
-                  className={`absolute inset-0 bg-[#1C2329]/90 p-5 flex flex-col justify-center items-center transition-opacity duration-300 z-15 ${
+                  className={`absolute inset-0 bg-[#1C2329]/90 p-5 flex flex-col justify-center items-center transition-opacity duration-300 z-20 ${
                     hoveredCard === item.id ? "opacity-100" : "opacity-0 pointer-events-none"
                   }`}
                 >

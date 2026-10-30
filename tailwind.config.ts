@@ -74,6 +74,15 @@ const config: Config = {
         'steel-gradient': 'linear-gradient(135deg, #2D3740 0%, #1C2329 100%)',
         'plate-gradient': 'linear-gradient(180deg, #F8FAFC 0%, #EEF2F6 100%)',
       },
+      keyframes: {
+        fadeIn: {
+          '0%': { opacity: '0', transform: 'translateY(-4px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        fadeIn: 'fadeIn 0.2s ease-out both',
+      },
     },
   },
   plugins: [],

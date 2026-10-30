@@ -68,7 +68,7 @@ export default function ToolsResources() {
 
                 <div>
                   <div className="flex items-center justify-between mb-5">
-                    <div className="w-13 h-13 bg-[#1C2329] group-hover:bg-brand-orange text-white flex items-center justify-center transition-colors p-3 shadow-md border-b-2 border-brand-orange">
+                    <div className="w-14 h-14 bg-[#1C2329] group-hover:bg-brand-orange text-white flex items-center justify-center transition-colors p-3 shadow-md border-b-2 border-brand-orange">
                       <Icon className="w-6 h-6 text-white" />
                     </div>
                     <span className="text-[9px] font-mono font-bold uppercase tracking-wider bg-gray-100 text-brand-steel px-2.5 py-1 border border-gray-300">
