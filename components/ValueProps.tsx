@@ -77,7 +77,7 @@ export default function ValueProps() {
             <div className="inline-flex items-center gap-2 mb-2">
               <span className="w-2.5 h-2.5 bg-brand-orange" />
               <span className="text-[11px] font-mono font-bold tracking-widest uppercase text-brand-steel">
-                MANUFACTURING EXCELLENCE SINCE 1984
+                MODERN STEEL MANUFACTURING & ENGINEERING
               </span>
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-black uppercase text-[#1C2329] tracking-tight font-serif">
@@ -100,10 +100,10 @@ export default function ValueProps() {
                 PILLAR 01 // STRUCTURAL INTEGRITY
               </span>
               <h3 className="text-lg font-black uppercase text-[#1C2329] font-serif tracking-tight">
-                Decades of Experience
+                Precision Engineering
               </h3>
               <p className="text-xs sm:text-sm text-gray-700 mt-3 leading-relaxed">
-                With over four decades of steel engineering, high-tensile cold-forming, and rigid-frame manufacturing, our pre-engineered buildings are proven to withstand extreme snow, hurricane-force winds, and seismic demands.
+                Built with modern steel engineering, high-tensile cold-forming, and rigid-frame manufacturing, our pre-engineered buildings are engineered to withstand extreme snow, hurricane-force winds, and seismic demands.
               </p>
             </div>
 

@@ -1088,14 +1088,14 @@ export default function Navbar() {
                 <div className="p-4 border border-gray-200 bg-white">
                   <h5 className="font-bold text-sm text-brand-charcoal">About IronCrest</h5>
                   <p className="text-xs text-gray-600 mt-2 leading-relaxed">
-                    Decades of pre-engineered steel manufacturing excellence. We deliver heavy structural steel, roll-formed metal roofing, and building kits built to endure the elements.
+                    State-of-the-art pre-engineered steel manufacturing excellence. We deliver heavy structural steel, roll-formed metal roofing, and building kits built to endure the elements.
                   </p>
                   <Link
                     href="#about"
                     onClick={() => setActiveMenu(null)}
                     className="inline-block mt-3 text-xs font-bold text-brand-blue hover:underline"
                   >
-                    Our History & Philosophy →
+                    Our Company & Philosophy →
                   </Link>
                 </div>
 

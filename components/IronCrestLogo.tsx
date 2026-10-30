@@ -48,9 +48,6 @@ export default function IronCrestLogo({ className = "h-10", variant = "dark" }: 
           >
             IRON<span style={{ color: accentColor }}>CREST</span>
           </span>
-          <span className="ml-1 text-[9px] font-mono font-bold text-brand-zinc tracking-tighter">
-            EST. 1984
-          </span>
         </div>
         <div className="flex items-center gap-1.5 mt-0.5">
           <span className="w-1.5 h-1.5 bg-brand-orange shrink-0" />
